@@ -3,7 +3,6 @@ using System.IO;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
-using Selenium.config;
 
 namespace Selenium.core.browsers
 {

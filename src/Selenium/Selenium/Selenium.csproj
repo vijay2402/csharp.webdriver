@@ -47,11 +47,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="config\ConfigurationKeys.cs" />
     <Compile Include="core\browsers\AbstractFactory.cs" />
     <Compile Include="core\browsers\BrowserAdapter.cs" />
     <Compile Include="core\browsers\BrowserFactory.cs" />
     <Compile Include="core\browsers\BrowserType.cs" />
+    <Compile Include="core\browsers\Config.cs" />
     <Compile Include="core\browsers\IBrowser.cs" />
     <Compile Include="core\browsers\IBrowserFactory.cs" />
     <Compile Include="core\browsers\IBrowserWebDriver.cs" />

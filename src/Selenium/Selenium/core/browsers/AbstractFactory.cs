@@ -4,7 +4,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
-using Selenium.config;
 
 namespace Selenium.core.browsers
 {
@@ -26,27 +25,17 @@ namespace Selenium.core.browsers
             return factoryMethod?.Create();
         }
 
-        public IBrowser GetBrowser(BrowserType type)
-        {
-            if ((Config.RemoteBrowser && Config.UseSauceLabs) || (Config.RemoteBrowser && Config.UseBrowserstack) ||
-                (Config.RemoteBrowser && Config.UseSeleniumGrid))
-                return _browsers[BrowserType.Remote].Invoke();
-            return _browsers.ContainsKey(type) ? _browsers[type].Invoke() : _browsers[BrowserType.Firefox].Invoke();
-        }
+        private IBrowser Remote() => Create<RemoteWebDriver>();
+        private IBrowser Chrome() => Create<ChromeDriver>();
+        private IBrowser Firefox() => Create<FirefoxDriver>();
 
-        private IBrowser Remote()
-        {
-            return Create<RemoteWebDriver>();
-        }
-
-        private IBrowser Chrome()
-        {
-            return Create<ChromeDriver>();
-        }
-
-        private IBrowser Firefox()
-        {
-            return Create<FirefoxDriver>();
-        }
+        public IBrowser GetBrowser(BrowserType type) =>
+            (Config.RemoteBrowser && Config.UseSauceLabs) ||
+            (Config.RemoteBrowser && Config.UseBrowserstack) ||
+            (Config.RemoteBrowser && Config.UseSeleniumGrid)
+                ? _browsers[BrowserType.Remote].Invoke()
+                : (_browsers.ContainsKey(type)
+                    ? _browsers[type].Invoke()
+                    : _browsers[BrowserType.Firefox].Invoke());
     }
 }

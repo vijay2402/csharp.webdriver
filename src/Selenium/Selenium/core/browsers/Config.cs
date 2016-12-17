@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Configuration;
-using Selenium.core.browsers;
 
-namespace Selenium.config
+namespace Selenium.core.browsers
 {
     public class Config
     {
         public static bool RemoteBrowser => bool.Parse(ConfigurationManager.AppSettings["RemoteBrowser"]);
 
         public static BrowserType Browser
-            => (BrowserType) Enum.Parse(typeof(BrowserType), ConfigurationManager.AppSettings["Browser"]);
+            => (BrowserType)Enum.Parse(typeof(BrowserType), ConfigurationManager.AppSettings["Browser"]);
 
         public static string Platform => ConfigurationManager.AppSettings["Platform"];
         public static string BaseUrl => ConfigurationManager.AppSettings["BaseUrl"];
